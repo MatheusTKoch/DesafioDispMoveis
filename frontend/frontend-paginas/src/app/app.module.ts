@@ -1,23 +1,33 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { CadastroEscolhaComponent } from './cadastro-escolha/cadastro-escolha.component';
+import { CadastroVoluntarioComponent } from './cadastro-voluntario/cadastro-voluntario.component';
+import { TelaVoluntarioComponent } from './tela-voluntario/tela-voluntario.component';
+import { TelaInstituicaoComponent } from './tela-instituicao/tela-instituicao.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    CadastroEscolhaComponent,
+    CadastroVoluntarioComponent,
+    TelaVoluntarioComponent,
+    TelaInstituicaoComponent
+  ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    HttpClientModule
+    FormsModule,
+    RouterModule,
+    AppRoutingModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 interface Instituicao {
   nome: string;
@@ -18,9 +14,7 @@ interface Instituicao {
 @Component({
   selector: 'app-cadastro-instituicao',
   templateUrl: './cadastro-instituicao.page.html',
-  styleUrls: ['./cadastro-instituicao.page.scss'],
-  standalone: true,       // ✅ torna o componente standalone
-  imports: [CommonModule, FormsModule, IonicModule, HttpClientModule, RouterModule]
+  styleUrls: ['./cadastro-instituicao.page.scss']
 })
 export class CadastroInstituicaoPage {
   instituicao: Instituicao = {
@@ -42,7 +36,7 @@ export class CadastroInstituicaoPage {
     this.successMessage = '';
     this.errorMessage = '';
 
-    this.http.post('http://localhost:3000/conta/cadastro/instituicao', this.instituicao)
+    this.http.post<any>('http://localhost:3000/conta/cadastro/instituicao', this.instituicao)
       .subscribe({
         next: () => this.successMessage = 'Cadastro realizado com sucesso!',
         error: err => this.errorMessage = `Erro: ${err.error?.message || 'Não foi possível cadastrar.'}`
