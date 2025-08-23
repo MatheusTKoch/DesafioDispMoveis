@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { CadastroVoluntarioPage } from './cadastro-voluntario.page';
 
 const routes: Routes = [

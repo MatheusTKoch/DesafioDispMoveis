@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
-import { CadastroInstituicaoPageRoutingModule } from './cadastro-instituicao-routing.module';
+import { RouterModule } from '@angular/router';
 import { CadastroInstituicaoPage } from './cadastro-instituicao.page';
 
 @NgModule({
@@ -11,8 +10,8 @@ import { CadastroInstituicaoPage } from './cadastro-instituicao.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CadastroInstituicaoPageRoutingModule
+    RouterModule.forChild([{ path: '', component: CadastroInstituicaoPage }])
   ],
-  declarations: [CadastroInstituicaoPage]
+  declarations: [CadastroInstituicaoPage] // ✅ agora funciona
 })
 export class CadastroInstituicaoPageModule {}
