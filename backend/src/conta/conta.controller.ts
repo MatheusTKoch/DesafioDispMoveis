@@ -1,0 +1,21 @@
+// conta.controller.ts
+import { Controller, Post, Body } from '@nestjs/common';
+import { ContaService } from './conta.service';
+import { CreateContaDto } from './dto/create-conta.dto';
+import { CreateInstituicaoDto } from './dto/create-instituicao.dto';
+
+
+@Controller('conta') // <-- define o caminho base
+export class ContaController {
+  constructor(private readonly contaService: ContaService) {}
+
+  @Post('cadastro/voluntario') // <-- define a rota POST /conta/voluntario
+  createVoluntario(@Body() createContaDto: CreateContaDto) {
+    return this.contaService.createVoluntario(createContaDto);
+  }
+
+  @Post('cadastro/instituicao')
+  createInstituicao(@Body() createInstituicaoDto: CreateInstituicaoDto) {
+   return this.contaService.createInstituicao(createInstituicaoDto);
+ }
+}

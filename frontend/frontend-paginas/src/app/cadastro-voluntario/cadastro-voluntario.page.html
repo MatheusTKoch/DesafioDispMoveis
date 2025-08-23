@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro de Voluntário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form (ngSubmit)="submitForm()">
+
+    <ion-item>
+      <ion-label position="stacked">Nome Completo</ion-label>
+      <ion-input [(ngModel)]="voluntario.nome" name="nome" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]="voluntario.email" name="email" type="email" required></ion-input>
+    </ion-item>
+
+     <ion-item>
+     <ion-label position="stacked">Senha</ion-label>
+     <ion-input [(ngModel)]="voluntario.senha" name="senha" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">CPF</ion-label>
+      <ion-input [(ngModel)]="voluntario.cpf" name="cpf" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Telefone</ion-label>
+      <ion-input [(ngModel)]="voluntario.telefone" name="telefone" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Telefone de Emergência</ion-label>
+      <ion-input [(ngModel)]="voluntario.contato_emergencial" name="contato_emergencial"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Habilidades</ion-label>
+      <ion-textarea [(ngModel)]="voluntario.habilidades" name="habilidades"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top">Cadastrar</ion-button>
+  </form>
+
+  <ion-text color="success" *ngIf="successMessage">
+    <p>{{ successMessage }}</p>
+  </ion-text>
+
+  <ion-text color="danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+
+</ion-content>

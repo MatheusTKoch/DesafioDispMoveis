@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+     <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro de Instituição</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="submitForm()" #cadastroForm="ngForm">
+
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="instituicao.nome" name="nome" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="instituicao.email" name="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="instituicao.senha" name="senha" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input type="text" [(ngModel)]="instituicao.telefone" name="telefone" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">CNPJ</ion-label>
+      <ion-input type="text" [(ngModel)]="instituicao.cnpj" name="cnpj" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Endereço</ion-label>
+      <ion-input type="text" [(ngModel)]="instituicao.endereco" name="endereco" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" class="ion-margin-top">Cadastrar</ion-button>
+
+    <ion-text color="success" *ngIf="successMessage">{{ successMessage }}</ion-text>
+    <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+
+  </form>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "cadastro-instituicao",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
