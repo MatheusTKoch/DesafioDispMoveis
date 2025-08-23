@@ -1,7 +1,6 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
 
-import { AppModule } from './app/app.module';
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .then(() => console.log('AppModule inicializado com sucesso!'))
+bootstrapApplication(AppComponent)
+  .then(() => console.log('App inicializado com sucesso!'))
   .catch(err => console.log(err));

@@ -7,7 +7,7 @@ import { CadastroVoluntarioComponent } from './cadastro-voluntario/cadastro-volu
 import { TelaVoluntarioComponent } from './tela-voluntario/tela-voluntario.component';
 import { TelaInstituicaoComponent } from './tela-instituicao/tela-instituicao.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'cadastro-escolha', component: CadastroEscolhaComponent },
   { path: 'cadastro-voluntario', component: CadastroVoluntarioComponent },

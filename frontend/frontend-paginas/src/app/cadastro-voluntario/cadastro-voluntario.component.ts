@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-voluntario',
   templateUrl: './cadastro-voluntario.component.html',
-  styleUrls: ['./cadastro-voluntario.component.scss']
+  styleUrls: [],
+  imports: [FormsModule]
 })
 export class CadastroVoluntarioComponent {
   nome: string = '';

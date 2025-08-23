@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface Vaga {
   titulo: string;
@@ -12,7 +14,8 @@ interface Vaga {
 @Component({
   selector: 'app-tela-voluntario',
   templateUrl: './tela-voluntario.component.html',
-  styleUrls: ['./tela-voluntario.component.css']
+  styleUrls: [],
+  imports: [CommonModule, FormsModule]
 })
 export class TelaVoluntarioComponent implements OnInit {
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 interface Vaga {
   titulo: string;
@@ -11,7 +12,8 @@ interface Vaga {
 @Component({
   selector: 'app-tela-instituicao',
   templateUrl: './tela-instituicao.component.html',
-  styleUrls: ['./tela-instituicao.component.scss']
+  styleUrls: ['./tela-instituicao.component.scss'],
+  imports: [CommonModule]
 })
 export class TelaInstituicaoComponent {
   vagas: Vaga[] = [

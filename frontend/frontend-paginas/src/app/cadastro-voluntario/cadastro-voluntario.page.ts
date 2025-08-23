@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 interface Voluntario {
   nome: string;
@@ -15,7 +17,9 @@ interface Voluntario {
 @Component({
   selector: 'app-cadastro-voluntario',
   templateUrl: './cadastro-voluntario.page.html',
-  styleUrls: ['./cadastro-voluntario.page.scss']
+  styleUrls: ['./cadastro-voluntario.page.scss'],
+  standalone: true,
+  imports: [FormsModule]
 })
 export class CadastroVoluntarioPage {
   voluntario: Voluntario = {

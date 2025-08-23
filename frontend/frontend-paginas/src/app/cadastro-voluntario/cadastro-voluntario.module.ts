@@ -11,8 +11,9 @@ import { CadastroVoluntarioPage } from './cadastro-voluntario.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CadastroVoluntarioPageRoutingModule
+    CadastroVoluntarioPageRoutingModule,
+    CadastroVoluntarioPage
   ],
-  declarations: [CadastroVoluntarioPage]
+  declarations: []
 })
 export class CadastroVoluntarioPageModule {}
