@@ -10,8 +10,9 @@ import { CadastroInstituicaoPage } from './cadastro-instituicao.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild([{ path: '', component: CadastroInstituicaoPage }])
+    RouterModule.forChild([{ path: '', component: CadastroInstituicaoPage }]),
+    CadastroInstituicaoPage
   ],
-  declarations: [CadastroInstituicaoPage] // ✅ agora funciona
+  declarations: []
 })
 export class CadastroInstituicaoPageModule {}

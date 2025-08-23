@@ -47,6 +47,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { CadastroVoluntarioPage } from './cadastro-voluntario/cadastro-voluntario.page';
 import { CadastroInstituicaoPage } from './cadastro-instituicao/cadastro-instituicao.page';
+import { SelecaoCadastroPage } from './selecao-cadastro/selecao-cadastro.page';
 
 const routes: Routes = [
   {
@@ -57,6 +58,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'selecao',
+    component: SelecaoCadastroPage
   },
   {
     path: 'cadastro-voluntario',
