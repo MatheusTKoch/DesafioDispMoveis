@@ -48,6 +48,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CadastroVoluntarioPage } from './cadastro-voluntario/cadastro-voluntario.page';
 import { CadastroInstituicaoPage } from './cadastro-instituicao/cadastro-instituicao.page';
 import { SelecaoCadastroPage } from './selecao-cadastro/selecao-cadastro.page';
+import { LoginInstituicaoPage } from './login-instituicao/login-instituicao.page';
+import { LoginVoluntarioPage } from './login-voluntario/login-voluntario.page';
 import { HomePage } from './home/home.page';
 
 const routes: Routes = [
@@ -73,9 +75,18 @@ const routes: Routes = [
     component: CadastroInstituicaoPage
   },
   {
+    path: 'login-instituicao',
+    component: LoginInstituicaoPage
+  },
+  {
+    path: 'login-voluntario',
+    component: LoginVoluntarioPage
+  },
+  {
     path: '**',
     redirectTo: 'home'
-  }
+  },
+
 ];
 
 @NgModule({

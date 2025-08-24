@@ -6,7 +6,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { isValidEmail } from '../utils/validators/validatorEmail';
 import { isValidPassword } from '../utils/validators/validatorSenha';
-import { maskCnpj } from '../utils/mascara/maskCnpj';
+import { maskCnpj } from '../utils/mascara/maskCNPJ';
 import { maskTelefone } from '../utils/mascara/maskTelefone';
 
 interface Instituicao {
