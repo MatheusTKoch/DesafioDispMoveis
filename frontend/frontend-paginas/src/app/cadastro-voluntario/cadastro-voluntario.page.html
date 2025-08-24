@@ -30,17 +30,32 @@
 
     <ion-item>
       <ion-label position="stacked">CPF</ion-label>
-      <ion-input [(ngModel)]="voluntario.cpf" name="cpf" required></ion-input>
+      <ion-input
+        [(ngModel)]="voluntario.cpf"
+        (ionInput)="voluntario.cpf = maskCpf(voluntario.cpf)"
+        name="cpf"
+        maxlength="14"
+        required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Telefone</ion-label>
-      <ion-input [(ngModel)]="voluntario.telefone" name="telefone" required></ion-input>
+      <ion-input
+        [(ngModel)]="voluntario.telefone"
+        (ionInput)="voluntario.telefone = maskTelefone(voluntario.telefone)"
+        name="telefone"
+        maxlength="15"
+        required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Telefone de Emergência</ion-label>
-      <ion-input [(ngModel)]="voluntario.contato_emergencial" name="contato_emergencial"></ion-input>
+      <ion-input
+        [(ngModel)]="voluntario.contato_emergencial"
+        (ionInput)="voluntario.contato_emergencial= maskTelefone(voluntario.contato_emergencial)"
+        name="contato_emergencial"
+        maxlength="15"
+        ></ion-input>
     </ion-item>
 
     <ion-item>

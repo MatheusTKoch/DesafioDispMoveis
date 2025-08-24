@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { isValidEmail } from '../utils/validators/validatorEmail';
+import { isValidPassword } from '../utils/validators/validatorSenha';
+import { maskCnpj } from '../utils/mascara/maskCnpj';
+import { maskTelefone } from '../utils/mascara/maskTelefone';
 
 interface Instituicao {
   nome: string;
@@ -19,10 +23,13 @@ interface Instituicao {
   selector: 'app-cadastro-instituicao',
   templateUrl: './cadastro-instituicao.page.html',
   styleUrls: ['./cadastro-instituicao.page.scss'],
-  standalone: true,       // ✅ torna o componente standalone
+  standalone: true,
   imports: [CommonModule, FormsModule, IonicModule, HttpClientModule, RouterModule]
 })
 export class CadastroInstituicaoPage {
+  maskCnpj = maskCnpj;
+  maskTelefone = maskTelefone;
+
   instituicao: Instituicao = {
     nome: '',
     email: '',
@@ -41,11 +48,26 @@ export class CadastroInstituicaoPage {
   submitForm() {
     this.successMessage = '';
     this.errorMessage = '';
+    const cnpjFinal = this.instituicao.cnpj.replace(/\D/g, '');
+    const telefoneFinal = this.instituicao.telefone.replace(/\D/g, '');
+
+    this.instituicao.cnpj = cnpjFinal;
+    this.instituicao.telefone = telefoneFinal;
+
+    if (!isValidEmail(this.instituicao.email)) {
+      this.errorMessage = 'Email inválido!';
+      return;
+    }
+
+    if (!isValidPassword(this.instituicao.senha)) {
+      this.errorMessage = 'Senha deve ter ao menos 6 caracteres, letras e números!';
+      return;
+    }
 
     this.http.post('http://localhost:3000/conta/cadastro/instituicao', this.instituicao)
       .subscribe({
         next: () => this.successMessage = 'Cadastro realizado com sucesso!',
-        error: err => this.errorMessage = `Erro: ${err.error?.message || 'Não foi possível cadastrar.'}`
+        error: err => this.errorMessage = err.error?.message || 'Erro ao realizar login.'
       });
   }
 }

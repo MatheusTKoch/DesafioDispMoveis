@@ -29,12 +29,24 @@
 
     <ion-item>
       <ion-label position="floating">Telefone</ion-label>
-      <ion-input type="text" [(ngModel)]="instituicao.telefone" name="telefone" required></ion-input>
+      <ion-input
+        type="text"
+        [(ngModel)]="instituicao.telefone"
+        name="telefone"
+        (ionInput)="instituicao.telefone = maskTelefone(instituicao.telefone)"
+        maxlength="15"
+        required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">CNPJ</ion-label>
-      <ion-input type="text" [(ngModel)]="instituicao.cnpj" name="cnpj" required></ion-input>
+      <ion-input
+        type="text"
+        [(ngModel)]="instituicao.cnpj"
+        name="cnpj"
+        (ionInput)="instituicao.cnpj = maskCnpj(instituicao.cnpj)"
+        maxlength="18"
+        required></ion-input>
     </ion-item>
 
     <ion-item>

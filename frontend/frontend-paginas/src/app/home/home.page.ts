@@ -26,7 +26,7 @@ export class HomePage {
       return;
     }
     if (!isValidPassword(this.senha)) {
-      this.errorMessage = 'Senha deve ter ao menos 7 caracteres, letras e números!';
+      this.errorMessage = 'Senha deve ter ao menos 6 caracteres, letras e números!';
       return;
     }
 
