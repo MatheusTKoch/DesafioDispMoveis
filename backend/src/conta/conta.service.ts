@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Conta } from './conta.entity';
@@ -38,14 +38,28 @@ export class ContaService {
   }
 
   async createInstituicao(dto: CreateInstituicaoDto): Promise<Conta> {
-  const hashedPassword = await bcrypt.hash(dto.senha, 10);
+    const hashedPassword = await bcrypt.hash(dto.senha, 10);
 
-  const conta = this.contaRepository.create({
-    ...dto,
-    senha: hashedPassword,
-    tipo_conta: TipoConta.INSTITUICAO, // força o tipo para instituição
-  });
+    const conta = this.contaRepository.create({
+      ...dto,
+      senha: hashedPassword,
+      tipo_conta: TipoConta.INSTITUICAO, // força o tipo para instituição
+    });
 
-  return this.contaRepository.save(conta);
-}
+    return this.contaRepository.save(conta);
+  }
+
+  async login(email: string, senha: string) {
+    const conta = await this.contaRepository.findOne({ where: { email } });
+    if (!conta) {
+      throw new BadRequestException('Usuário não encontrado');
+    }
+
+    const isValid = await bcrypt.compare(senha, conta.senha);
+    if (!isValid) {
+      throw new BadRequestException('Senha inválida');
+    }
+
+    return { tipo_conta: conta.tipo_conta, id_conta: conta.id_conta, nome: conta.nome };
+  }
 }

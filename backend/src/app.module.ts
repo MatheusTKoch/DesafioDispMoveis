@@ -5,6 +5,7 @@ import { ContaModule } from './conta/conta.module';
 import { VagaModule } from './vaga/vaga.module';
 import { InscricaoModule } from './inscricao/inscricao.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LoginController } from './login/login.controller';
 
 @Module({
   imports: [ContaModule, VagaModule, InscricaoModule,
@@ -19,7 +20,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: false, // cuidado: true recria tabelas, só usar em teste
     }),
   ],
-  controllers: [AppController],
+  controllers: [AppController, LoginController],
   providers: [AppService],
 })
 export class AppModule {}

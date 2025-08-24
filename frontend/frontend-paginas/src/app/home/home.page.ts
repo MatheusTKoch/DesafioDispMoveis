@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { isValidEmail } from '../utils/validators/validatorEmail';
 import { isValidPassword } from '../utils/validators/validatorSenha';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomePage {
   errorMessage = '';
   successMessage = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login() {
     this.errorMessage = '';
@@ -34,7 +35,13 @@ export class HomePage {
       email: this.email,
       senha: this.senha
     }).subscribe({
-      next: () => this.successMessage = 'Login realizado com sucesso!',
+      next: (res: any) => {
+        if (res.tipo_conta === 'instituicao') {
+          this.router.navigate(['/login-instituicao']);
+        } else {
+          this.router.navigate(['/login-voluntario']);
+        }
+      },
       error: err => this.errorMessage = err.error?.message || 'Erro ao realizar login.'
     });
   }

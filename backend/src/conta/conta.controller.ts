@@ -18,4 +18,9 @@ export class ContaController {
   createInstituicao(@Body() createInstituicaoDto: CreateInstituicaoDto) {
    return this.contaService.createInstituicao(createInstituicaoDto);
  }
+
+ @Post('login')
+ async login(@Body() body: { email: string; senha: string }) {
+   return this.contaService.login(body.email, body.senha);
+ }
 }
