@@ -14,11 +14,13 @@
         <ion-card style="padding: 30px">
           <ion-card-title>Olá, faça seu login ou cadastre-se!</ion-card-title>
           <ion-card-content>
-            <ion-input label="Email: " type="email"></ion-input>
-            <ion-input label="Senha: " type="password">
+            <ion-input label="Email: " type="email" [(ngModel)]="email"></ion-input>
+            <ion-input label="Senha: " type="password" [(ngModel)]="senha">
               <ion-input-password-toggle slot="end"></ion-input-password-toggle>
             </ion-input>
-            <ion-button style="display: flex; align-items: center;">Login</ion-button>
+            <ion-button (click)="login()" style="display: flex; align-items: center;">Login</ion-button>
+            <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+            <ion-text color="success" *ngIf="successMessage">{{ successMessage }}</ion-text>
           </ion-card-content>
         </ion-card>
       </ion-col>
