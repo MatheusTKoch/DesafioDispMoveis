@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
 import { SelecaoCadastroPageRoutingModule } from './selecao-cadastro-routing.module';
-
 import { SelecaoCadastroPage } from './selecao-cadastro.page';
 
 @NgModule({
@@ -13,6 +13,7 @@ import { SelecaoCadastroPage } from './selecao-cadastro.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    RouterModule,
     SelecaoCadastroPageRoutingModule,
     SelecaoCadastroPage
   ],

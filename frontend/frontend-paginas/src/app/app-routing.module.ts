@@ -48,6 +48,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CadastroVoluntarioPage } from './cadastro-voluntario/cadastro-voluntario.page';
 import { CadastroInstituicaoPage } from './cadastro-instituicao/cadastro-instituicao.page';
 import { SelecaoCadastroPage } from './selecao-cadastro/selecao-cadastro.page';
+import { HomePage } from './home/home.page';
 
 const routes: Routes = [
   {
@@ -70,6 +71,10 @@ const routes: Routes = [
   {
     path: 'cadastro-instituicao',
     component: CadastroInstituicaoPage
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
   }
 ];
 
