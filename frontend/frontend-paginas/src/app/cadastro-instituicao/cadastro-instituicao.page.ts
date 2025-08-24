@@ -8,6 +8,7 @@ import { isValidEmail } from '../utils/validators/validatorEmail';
 import { isValidPassword } from '../utils/validators/validatorSenha';
 import { maskCnpj } from '../utils/mascara/maskCNPJ';
 import { maskTelefone } from '../utils/mascara/maskTelefone';
+import { Router } from '@angular/router';
 
 interface Instituicao {
   nome: string;
@@ -43,7 +44,7 @@ export class CadastroInstituicaoPage {
   successMessage = '';
   errorMessage = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   submitForm() {
     this.successMessage = '';
@@ -66,7 +67,10 @@ export class CadastroInstituicaoPage {
 
     this.http.post('http://localhost:3000/conta/cadastro/instituicao', this.instituicao)
       .subscribe({
-        next: () => this.successMessage = 'Cadastro realizado com sucesso!',
+        next: () => {
+          this.successMessage = 'Cadastro realizado com sucesso!';
+          this.router.navigate(['/login-instituicao']);
+        },
         error: err => this.errorMessage = err.error?.message || 'Erro ao realizar login.'
       });
   }

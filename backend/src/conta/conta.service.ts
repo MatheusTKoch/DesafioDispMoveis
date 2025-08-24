@@ -57,7 +57,7 @@ export class ContaService {
 
     const isValid = await bcrypt.compare(senha, conta.senha);
     if (!isValid) {
-      throw new BadRequestException('Senha inválida');
+      throw new BadRequestException('Senha incorreta');
     }
 
     return { tipo_conta: conta.tipo_conta, id_conta: conta.id_conta, nome: conta.nome };

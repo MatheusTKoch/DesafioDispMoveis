@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { isValidEmail } from '../utils/validators/validatorEmail';
 import { isValidPassword } from '../utils/validators/validatorSenha';
 import { maskCpf } from '../utils/mascara/maskCPF';
@@ -45,7 +45,7 @@ export class CadastroVoluntarioPage {
   successMessage = '';
   errorMessage = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   submitForm() {
     this.successMessage = '';
@@ -70,7 +70,10 @@ export class CadastroVoluntarioPage {
 
     this.http.post('http://localhost:3000/conta/cadastro/voluntario', this.voluntario)
       .subscribe({
-        next: () => this.successMessage = 'Cadastro realizado com sucesso!',
+        next: () => {
+          this.successMessage = 'Cadastro realizado com sucesso!';
+          this.router.navigate(['/login-voluntario']);
+        },
         error: err => this.errorMessage = err.error?.message || 'Erro ao realizar login.'
       });
   }
