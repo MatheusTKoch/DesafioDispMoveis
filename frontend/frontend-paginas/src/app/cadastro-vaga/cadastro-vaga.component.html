@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+     <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro de Vaga</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input [(ngModel)]="form.titulo" name="titulo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-textarea [(ngModel)]="form.descricao" name="descricao"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Habilidades</ion-label>
+      <ion-input [(ngModel)]="form.habilidades" name="habilidades"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Localização</ion-label>
+      <ion-input [(ngModel)]="form.localizacao" name="localizacao"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Qtd Vagas</ion-label>
+      <ion-input type="number" [(ngModel)]="form.qtd_vagas" name="qtd_vagas"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Data de Entrega</ion-label>
+      <ion-datetime [(ngModel)]="form.data_entrega" name="data_entrega" displayFormat="YYYY-MM-DD"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="form.status_vaga" name="status_vaga">
+        <ion-select-option value="aberta">Aberta</ion-select-option>
+        <ion-select-option value="encerrada">Encerrada</ion-select-option>
+        <ion-select-option value="cancelada">Cancelada</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" class="ion-margin-top">Cadastrar Vaga</ion-button>
+  </form>
+</ion-content>

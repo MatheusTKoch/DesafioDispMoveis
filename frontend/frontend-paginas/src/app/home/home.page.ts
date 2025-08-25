@@ -37,7 +37,7 @@ export class HomePage {
     }).subscribe({
       next: (res: any) => {
         if (res.tipo_conta === 'instituicao') {
-          this.router.navigate(['/login-instituicao']);
+         this.router.navigate([`/vagas-instituicao/${res.id_conta}`]);
         } else {
           this.router.navigate(['/login-voluntario']);
         }

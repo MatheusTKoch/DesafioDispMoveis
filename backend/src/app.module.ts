@@ -5,7 +5,7 @@ import { ContaModule } from './conta/conta.module';
 import { VagaModule } from './vaga/vaga.module';
 import { InscricaoModule } from './inscricao/inscricao.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoginController } from './login/login.controller';
+//import { LoginController } from './login/login.controller';
 
 @Module({
   imports: [ContaModule, VagaModule, InscricaoModule,
@@ -14,13 +14,13 @@ import { LoginController } from './login/login.controller';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'root',
+      password: 'Felipe@123',
       database: 'desafio',
       autoLoadEntities: true,
       synchronize: false, // cuidado: true recria tabelas, só usar em teste
     }),
   ],
-  controllers: [AppController, LoginController],
+  controllers: [AppController,],
   providers: [AppService],
 })
 export class AppModule {}

@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany  } from 'typeorm';
+import { Vaga } from '../vaga/vaga.entity';
+
 
 @Entity('Conta')
 export class Conta {
@@ -37,4 +39,5 @@ export class Conta {
     enum: ['voluntario', 'instituicao'],
   })
   tipo_conta: 'voluntario' | 'instituicao';
+
 }
