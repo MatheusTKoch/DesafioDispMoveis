@@ -36,8 +36,9 @@ export class HomePage {
       senha: this.senha
     }).subscribe({
       next: (res: any) => {
+        localStorage.setItem('token', res.token);
         if (res.tipo_conta === 'instituicao') {
-         this.router.navigate([`/vagas-instituicao/${res.id_conta}`]);
+          this.router.navigate([`/vagas-instituicao/${res.id_conta}`]);
         } else {
           this.router.navigate(['/login-voluntario']);
         }

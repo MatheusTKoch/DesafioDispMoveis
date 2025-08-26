@@ -14,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'Felipe@123',
+      password: 'root',
       database: 'desafio',
       autoLoadEntities: true,
       synchronize: false, // cuidado: true recria tabelas, só usar em teste

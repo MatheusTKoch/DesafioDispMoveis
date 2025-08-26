@@ -2,16 +2,17 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Conta } from './conta.entity';
-import { CreateContaDto } from './dto/create-conta.dto';
 import * as bcrypt from 'bcrypt';
-
+import { JwtService } from '@nestjs/jwt';
 import { TipoConta, CreateInstituicaoDto } from './dto/create-instituicao.dto';
+import { CreateContaDto } from './dto/create-conta.dto';
 
 @Injectable()
 export class ContaService {
   constructor(
     @InjectRepository(Conta)
     private contaRepository: Repository<Conta>,
+    private jwtService: JwtService,
   ) {}
 
   async createVoluntario(dto: CreateContaDto): Promise<Conta> {
@@ -60,6 +61,20 @@ export class ContaService {
       throw new BadRequestException('Senha incorreta');
     }
 
-    return { tipo_conta: conta.tipo_conta, id_conta: conta.id_conta, nome: conta.nome };
+    //Token JWT
+    const payload = {
+      sub: conta.id_conta,
+      tipo_conta: conta.tipo_conta,
+      email: conta.email,
+      nome: conta.nome,
+    };
+    const token = this.jwtService.sign(payload);
+
+    return {
+      token,
+      tipo_conta: conta.tipo_conta,
+      id_conta: conta.id_conta,
+      nome: conta.nome,
+    };
   }
 }
