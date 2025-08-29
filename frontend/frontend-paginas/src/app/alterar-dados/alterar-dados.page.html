@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-back-button defaultHref="/home"></ion-back-button> -->
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-label position="stacked">Telefone</ion-label>
+    <ion-input [value]="telefone" (ionInput)="onTelefone($event)"></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label position="stacked">Endereço</ion-label>
+    <ion-input [(ngModel)]="endereco"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Nova senha</ion-label>
+    <ion-input [(ngModel)]="senha"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Confirmar a senha</ion-label>
+    <ion-input [(ngModel)]="endereco"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="salvar()">Salvar</ion-button>
+
+  <ion-text color="success" *ngIf="successMessage">
+    <p>{{ successMessage }}</p>
+  </ion-text>
+  <ion-text color="danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+</ion-content>

@@ -11,6 +11,8 @@ import { LoginVoluntarioPage } from './login-voluntario/login-voluntario.page';
 import { HomePage } from './home/home.page';
 import { VagasInstituicaoComponent } from './vagas-instituicao/vagas-instituicao.component';
 import { CadastroVagaComponent } from './cadastro-vaga/cadastro-vaga.component';
+import { PerfilPage } from './perfil/perfil.page';
+import { AlterarDadosPage } from './alterar-dados/alterar-dados.page';
 
 
 const routes: Routes = [
@@ -56,10 +58,19 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'perfil',
+    component: PerfilPage,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'alterar-dados',
+    component: AlterarDadosPage,
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   },
-
 ];
 
 @NgModule({

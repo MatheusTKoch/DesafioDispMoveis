@@ -1,0 +1,81 @@
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { maskCpf } from '../utils/mascara/maskCPF';
+import { maskCnpj } from '../utils/mascara/maskCNPJ';
+import { maskTelefone } from '../utils/mascara/maskTelefone';
+import { isValidEmail } from '../utils/validators/validatorEmail';
+import { IonicModule } from "@ionic/angular";
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+type TipoConta = 'voluntario' | 'instituicao';
+
+@Component({
+  selector: 'app-perfil',
+  templateUrl: './perfil.page.html',
+  styleUrls: ['./perfil.page.scss'],
+  standalone: true,
+  imports: [
+    IonicModule,
+    FormsModule,
+    CommonModule
+  ]
+})
+export class PerfilPage {
+  tipo: TipoConta = 'voluntario';
+  nome = '';
+  email = '';
+  telefone = '';
+  endereco = '';
+  cpf = '';
+  cnpj = '';
+
+  successMessage = '';
+  errorMessage = '';
+
+  constructor(private http: HttpClient) {}
+
+  onTelefone(e: any) { this.telefone = maskTelefone(e.detail?.value || ''); }
+  onCpf(e: any) { this.cpf = maskCpf(e.detail?.value || ''); }
+  onCnpj(e: any) { this.cnpj = maskCnpj(e.detail?.value || ''); }
+
+  salvar() {
+    this.successMessage = '';
+    this.errorMessage = '';
+
+    if (!this.nome || !this.email) {
+      this.errorMessage = 'Preencha nome e email.';
+      return;
+    }
+    if (!isValidEmail(this.email)) {
+      this.errorMessage = 'Email inválido.';
+      return;
+    }
+
+    if (this.tipo === 'voluntario') {
+      const body: any = {
+        nome: this.nome,
+        email: this.email,
+        cpf: this.cpf,
+        telefone: this.telefone,
+        endereco: this.endereco
+      };
+      this.http.post('http://localhost:3000/conta/cadastro/voluntario', body).subscribe({
+        next: () => this.successMessage = 'Perfil salvo com sucesso!',
+        error: (err) => this.errorMessage = err?.error?.message || 'Erro ao salvar perfil.'
+      });
+    } else {
+      const body: any = {
+        nome: this.nome,
+        email: this.email,
+        cnpj: this.cnpj,
+        telefone: this.telefone,
+        endereco: this.endereco
+      };
+      this.http.post('http://localhost:3000/conta/cadastro/instituicao', body).subscribe({
+        next: () => this.successMessage = 'Perfil salvo com sucesso!',
+        error: (err) => this.errorMessage = err?.error?.message || 'Erro ao salvar perfil.'
+      });
+    }
+  }
+}
