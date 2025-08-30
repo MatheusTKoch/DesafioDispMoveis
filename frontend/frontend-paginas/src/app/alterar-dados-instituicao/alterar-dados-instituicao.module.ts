@@ -13,8 +13,9 @@ import { AlterarDadosInstituicaoPage } from './alterar-dados-instituicao.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AlterarDadosInstituicaoPageRoutingModule
+    AlterarDadosInstituicaoPageRoutingModule,
+    AlterarDadosInstituicaoPage
   ],
-  declarations: [AlterarDadosInstituicaoPage]
+  declarations: []
 })
 export class AlterarDadosInstituicaoPageModule {}

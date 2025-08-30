@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { IonicModule, PopoverController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login-voluntario',
@@ -15,11 +15,21 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule]
 })
-export class LoginVoluntarioPage implements OnInit {
+export class LoginVoluntarioPage {
+  constructor (
+    private router: Router,
+    private popoverController: PopoverController
+  ) {}
 
-  constructor() { }
+  async logout() {
+    localStorage.removeItem('token');
+    await this.popoverController.dismiss();
+    this.router.navigate(['/home']);
+  }
 
-  ngOnInit() {
+  async AlterarDadosVoluntario() {
+    await this.popoverController.dismiss();
+    this.router.navigate(['/alterar-dados-voluntario']);
   }
 
 }

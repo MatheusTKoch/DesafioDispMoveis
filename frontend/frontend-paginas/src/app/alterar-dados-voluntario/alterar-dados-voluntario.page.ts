@@ -33,32 +33,21 @@ export class AlterarDadosVoluntarioPage  {
 
   onTelefone(e: any) { this.telefone = maskTelefone(e.detail?.value || ''); }
 
-  salvar() {
+  alterar() {
     this.successMessage = '';
     this.errorMessage = '';
 
+    const body: any = {
+        telefone: this.telefone,
+        endereco: this.endereco,
+        senha: this.senha
+      };
 
-    if (this.tipo === 'voluntario') {
-      const body: any = {
-        telefone: this.telefone,
-        endereco: this.endereco,
-        senha: this.senha
-      };
-      this.http.post('http://localhost:3000/conta/cadastro/voluntario', body).subscribe({
-        next: () => this.successMessage = 'Perfil salvo com sucesso!',
-        error: (err) => this.errorMessage = err?.error?.message || 'Erro ao salvar perfil.'
-      });
-    } else {
-      const body: any = {
-        telefone: this.telefone,
-        endereco: this.endereco,
-        senha: this.senha
-      };
-      this.http.post('http://localhost:3000/conta/cadastro/instituicao', body).subscribe({
-        next: () => this.successMessage = 'Perfil salvo com sucesso!',
-        error: (err) => this.errorMessage = err?.error?.message || 'Erro ao salvar perfil.'
-      });
-    }
+    this.http.post('http://localhost:3000/conta/cadastro/voluntario', body).subscribe({
+      next: () => this.successMessage = 'Perfil salvo com sucesso!',
+      error: (err) => this.errorMessage = err?.error?.message || 'Erro ao salvar perfil.'
+    });
+
   }
 
 }
