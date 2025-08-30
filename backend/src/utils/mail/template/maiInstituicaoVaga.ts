@@ -3,7 +3,7 @@ import transporter from '../config/config';
 const sendMailInstitution = async (mail: string, nameVolunteer: string, nameVoluntaryService: string, nameInstitution: string) => {
   try {
     const info = await transporter.sendMail({
-      from: '"App Desafio Dispositivos Moveis" <desafioprogdispmoveis@gmail.com>',
+      from: '"Solidar" <desafioprogdispmoveis@gmail.com>',
       to: mail,
       subject: "Cadastro de " + nameVolunteer + " para " + nameVoluntaryService,
       text: `Olá ${nameInstitution}! ${nameVolunteer} confirmou seu cadastro para ${nameVoluntaryService}.`,
@@ -27,7 +27,7 @@ const sendMailInstitution = async (mail: string, nameVolunteer: string, nameVolu
           </div>
 
           <div style="text-align: center; padding: 20px; color: #666; font-size: 12px;">
-            <p>© 2025 App Desafio Dispositivos Móveis</p>
+            <p>© 2025 Solidar</p>
           </div>
         </div>
       `

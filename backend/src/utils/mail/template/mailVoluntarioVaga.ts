@@ -28,7 +28,7 @@ const sendMailCandidate = async (mail: string, nameVolunteer: string, nameVolunt
           </div>
 
           <div style="text-align: center; padding: 20px; color: #666; font-size: 12px;">
-            <p>© 2025 App Desafio Dispositivos Móveis</p>
+            <p>© 2025 Solidar</p>
           </div>
         </div>
       `

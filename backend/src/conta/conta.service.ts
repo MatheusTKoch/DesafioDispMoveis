@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -6,6 +7,8 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { TipoConta, CreateInstituicaoDto } from './dto/create-instituicao.dto';
 import { CreateContaDto } from './dto/create-conta.dto';
+import sendMailCreateInstitution from '../utils/mail/template/mailContaInstituicao';
+import sendMailCreateVolunteer from '../utils/mail/template/mailContaVoluntario';
 
 @Injectable()
 export class ContaService {
@@ -23,7 +26,12 @@ export class ContaService {
       cnpj: undefined, // força null no caso de voluntário
       tipo_conta: 'voluntario',
     });
-    return this.contaRepository.save(conta);
+
+    const savedConta = await this.contaRepository.save(conta);
+
+    await sendMailCreateVolunteer(savedConta.email, savedConta.nome);
+
+    return savedConta;
   }
 
   async findAll(): Promise<Conta[]> {
@@ -47,7 +55,11 @@ export class ContaService {
       tipo_conta: TipoConta.INSTITUICAO, // força o tipo para instituição
     });
 
-    return this.contaRepository.save(conta);
+    const savedConta = await this.contaRepository.save(conta);
+
+    await sendMailCreateInstitution(savedConta.email, savedConta.nome);
+
+    return savedConta;
   }
 
   async login(email: string, senha: string) {

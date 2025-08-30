@@ -67,7 +67,7 @@ export class CadastroInstituicaoPage {
 
     this.http.post('http://localhost:3000/conta/cadastro/instituicao', this.instituicao)
       .subscribe({
-        next: () => {
+        next: async () => {
           this.successMessage = 'Cadastro realizado com sucesso!';
           this.router.navigate(['/login-instituicao']);
         },
