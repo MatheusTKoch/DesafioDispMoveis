@@ -7,35 +7,44 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <form>
-    <ion-item>
-    <ion-label position="stacked">Telefone</ion-label>
-    <ion-input [value]="telefone" (ionInput)="onTelefone($event)"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Endereço</ion-label>
-      <ion-input [(ngModel)]="endereco"></ion-input>
-    </ion-item>
+<ion-content style="padding: 40px;">
+  <ion-grid style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <ion-row>
+      <ion-col size="12" style="display: flex; justify-content: center;">
+        <ion-card style="padding: 30px">
+          <form>
+            <ion-item>
+            <ion-label position="stacked">Telefone</ion-label>
+            <ion-input [value]="telefone" (ionInput)="onTelefone($event)" maxlength="15"></ion-input>
+            </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Nova senha</ion-label>
-      <ion-input [(ngModel)]="senha"></ion-input>
-    </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Endereço</ion-label>
+              <ion-input [(ngModel)]="endereco"></ion-input>
+            </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Confirmar a senha</ion-label>
-      <ion-input [(ngModel)]="senha"></ion-input>
-    </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Nova senha</ion-label>
+              <ion-input [(ngModel)]="senha"></ion-input>
+            </ion-item>
 
-    <ion-button expand="block" class="ion-margin-top" (click)="alterar()">Salvar</ion-button>
+            <ion-item>
+              <ion-label position="stacked">Confirmar a senha</ion-label>
+              <ion-input [(ngModel)]="senha"></ion-input>
+            </ion-item>
 
-    <ion-text color="success" *ngIf="successMessage">
-      <p>{{ successMessage }}</p>
-    </ion-text>
-    <ion-text color="danger" *ngIf="errorMessage">
-      <p>{{ errorMessage }}</p>
-    </ion-text>
-  </form>
+            <ion-button expand="block" class="ion-margin-top" (click)="alterar()">Salvar</ion-button>
+
+            <ion-text color="success" *ngIf="successMessage">
+              <p>{{ successMessage }}</p>
+            </ion-text>
+            <ion-text color="danger" *ngIf="errorMessage">
+              <p>{{ errorMessage }}</p>
+            </ion-text>
+          </form>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

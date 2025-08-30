@@ -3,7 +3,7 @@ import { VagaService, Vaga } from './vaga.service';
 import { CommonModule, DatePipe  } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, PopoverController } from '@ionic/angular';
 
 
 
@@ -21,7 +21,8 @@ export class VagasInstituicaoComponent implements OnInit {
  constructor(
   private vagaService: VagaService,
   private route: ActivatedRoute,
-  private router: Router
+  private router: Router,
+  private popoverController: PopoverController
 ) {}
 
   goToCadastro() {
@@ -29,6 +30,17 @@ export class VagasInstituicaoComponent implements OnInit {
   if (idInstituicao) {
     this.router.navigate([`/cadastro-vaga/${idInstituicao}`]);
   }
+  }
+
+  async logout() {
+    localStorage.removeItem('token');
+    await this.popoverController.dismiss();
+    this.router.navigate(['/home']);
+  }
+
+  async AlterarDadosInstituicao() {
+    await this.popoverController.dismiss();
+    this.router.navigate(['/alterar-dados-instituicao']);
   }
 
   ngOnInit(): void {

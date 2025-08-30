@@ -8,56 +8,59 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form (ngSubmit)="submitForm()" #cadastroForm="ngForm">
+  <ion-grid style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <ion-card style="padding: 40px">
+      <form (ngSubmit)="submitForm()" #cadastroForm="ngForm">
 
-    <ion-item>
-      <ion-label position="floating">Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="instituicao.nome" name="nome" required></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input type="text" [(ngModel)]="instituicao.nome" name="nome" required></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="instituicao.email" name="email" required></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="instituicao.email" name="email" required></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="instituicao.senha" name="senha" required>
-        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-      </ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input type="password" [(ngModel)]="instituicao.senha" name="senha" required>
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Telefone</ion-label>
-      <ion-input
-        type="text"
-        [(ngModel)]="instituicao.telefone"
-        name="telefone"
-        (ionInput)="instituicao.telefone = maskTelefone(instituicao.telefone)"
-        maxlength="15"
-        required></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Telefone</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="instituicao.telefone"
+            name="telefone"
+            (ionInput)="instituicao.telefone = maskTelefone(instituicao.telefone)"
+            maxlength="15"
+            required></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">CNPJ</ion-label>
-      <ion-input
-        type="text"
-        [(ngModel)]="instituicao.cnpj"
-        name="cnpj"
-        (ionInput)="instituicao.cnpj = maskCnpj(instituicao.cnpj)"
-        maxlength="18"
-        required></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">CNPJ</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="instituicao.cnpj"
+            name="cnpj"
+            (ionInput)="instituicao.cnpj = maskCnpj(instituicao.cnpj)"
+            maxlength="18"
+            required></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Endereço</ion-label>
-      <ion-input type="text" [(ngModel)]="instituicao.endereco" name="endereco" required></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Endereço</ion-label>
+          <ion-input type="text" [(ngModel)]="instituicao.endereco" name="endereco" required></ion-input>
+        </ion-item>
 
-    <ion-button expand="full" type="submit" class="ion-margin-top">Cadastrar</ion-button>
+        <ion-button expand="full" type="submit" class="ion-margin-top">Cadastrar</ion-button>
 
-    <ion-text color="success" *ngIf="successMessage">{{ successMessage }}</ion-text>
-    <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
-
-  </form>
+        <ion-text color="success" *ngIf="successMessage">{{ successMessage }}</ion-text>
+        <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+      </form>
+    </ion-card>
+  </ion-grid>
 </ion-content>
