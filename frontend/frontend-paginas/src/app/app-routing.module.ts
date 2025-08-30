@@ -8,11 +8,10 @@ import { CadastroInstituicaoPage } from './cadastro-instituicao/cadastro-institu
 import { SelecaoCadastroPage } from './selecao-cadastro/selecao-cadastro.page';
 import { LoginInstituicaoPage } from './login-instituicao/login-instituicao.page';
 import { LoginVoluntarioPage } from './login-voluntario/login-voluntario.page';
-import { HomePage } from './home/home.page';
 import { VagasInstituicaoComponent } from './vagas-instituicao/vagas-instituicao.component';
 import { CadastroVagaComponent } from './cadastro-vaga/cadastro-vaga.component';
-import { PerfilPage } from './perfil/perfil.page';
-import { AlterarDadosPage } from './alterar-dados/alterar-dados.page';
+import { AlterarDadosVoluntarioPage } from './alterar-dados-voluntario/alterar-dados-voluntario.page';
+import { AlterarDadosInstituicaoPage } from './alterar-dados-instituicao/alterar-dados-instituicao.page';
 
 
 const routes: Routes = [
@@ -58,19 +57,19 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'perfil',
-    component: PerfilPage,
+    path: 'alterar-dados-voluntario',
+    component: AlterarDadosVoluntarioPage,
     canActivate: [AuthGuard]
   },
   {
-    path: 'alterar-dados',
-    component: AlterarDadosPage,
+    path: 'alterar-dados-instituicao',
+    component: AlterarDadosInstituicaoPage,
     canActivate: [AuthGuard]
   },
   {
     path: '**',
     redirectTo: 'home'
-  },
+  }
 ];
 
 @NgModule({

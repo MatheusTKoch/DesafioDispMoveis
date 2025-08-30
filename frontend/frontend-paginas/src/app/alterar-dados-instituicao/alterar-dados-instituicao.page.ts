@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { maskCpf } from '../utils/mascara/maskCPF';
-import { maskCnpj } from '../utils/mascara/maskCNPJ';
-import { maskTelefone } from '../utils/mascara/maskTelefone';
-import { isValidEmail } from '../utils/validators/validatorEmail';
-import { IonicModule } from "@ionic/angular";
+import { Component, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { maskCnpj } from '../utils/mascara/maskCNPJ';
+import { maskCpf } from '../utils/mascara/maskCPF';
+import { maskTelefone } from '../utils/mascara/maskTelefone';
+import { isValidEmail } from '../utils/validators/validatorEmail';
 
 type TipoConta = 'voluntario' | 'instituicao';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-alterar-dados-instituicao',
+  templateUrl: './alterar-dados-instituicao.page.html',
+  styleUrls: ['./alterar-dados-instituicao.page.scss'],
   standalone: true,
   imports: [
     IonicModule,
@@ -21,7 +21,8 @@ type TipoConta = 'voluntario' | 'instituicao';
     CommonModule
   ]
 })
-export class PerfilPage {
+export class AlterarDadosInstituicaoPage {
+
   tipo: TipoConta = 'voluntario';
   nome = '';
   email = '';
@@ -29,6 +30,7 @@ export class PerfilPage {
   endereco = '';
   cpf = '';
   cnpj = '';
+  senha = '';
 
   successMessage = '';
   errorMessage = '';
@@ -36,7 +38,6 @@ export class PerfilPage {
   constructor(private http: HttpClient) {}
 
   onTelefone(e: any) { this.telefone = maskTelefone(e.detail?.value || ''); }
-  onCpf(e: any) { this.cpf = maskCpf(e.detail?.value || ''); }
   onCnpj(e: any) { this.cnpj = maskCnpj(e.detail?.value || ''); }
 
   salvar() {
@@ -78,4 +79,5 @@ export class PerfilPage {
       });
     }
   }
+
 }

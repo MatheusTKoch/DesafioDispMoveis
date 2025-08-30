@@ -4,24 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { maskTelefone } from '../utils/mascara/maskTelefone';
-import { maskCnpj } from '../utils/mascara/maskCNPJ';
-import { maskCpf } from '../utils/mascara/maskCPF';
-import { isValidEmail } from '../utils/validators/validatorEmail';
 
 type TipoConta = 'voluntario' | 'instituicao';
 
 @Component({
-  selector: 'app-alterar-dados',
-  templateUrl: './alterar-dados.page.html',
-  styleUrls: ['./alterar-dados.page.scss'],
-  standalone: true,
+  selector: 'app-alterar-dados-voluntario',
+  templateUrl: './alterar-dados-voluntario.page.html',
+  styleUrls: ['./alterar-dados-voluntario.page.scss'],
   imports: [
     IonicModule,
     FormsModule,
-    CommonModule]
+    CommonModule
+  ],
+  standalone: true
 })
+export class AlterarDadosVoluntarioPage  {
 
-export class AlterarDadosPage {
   tipo: TipoConta = 'voluntario';
 
   telefone = '';
@@ -62,4 +60,5 @@ export class AlterarDadosPage {
       });
     }
   }
+
 }
