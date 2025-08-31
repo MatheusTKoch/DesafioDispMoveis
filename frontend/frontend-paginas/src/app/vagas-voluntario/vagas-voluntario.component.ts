@@ -13,6 +13,7 @@ import { VagaService, Vaga } from '../vaga.service'; // ajuste o caminho conform
 })
 export class VagasVoluntarioComponent implements OnInit {
   vagas: Vaga[] = [];
+  id: any;
 
   constructor(
     private vagaService: VagaService,
@@ -57,7 +58,8 @@ export class VagasVoluntarioComponent implements OnInit {
 
   async AlterarDadosVoluntario() {
     await this.popoverController.dismiss();
-    this.router.navigate(['/alterar-dados-voluntario']);
+    const idVoluntario = this.route.snapshot.paramMap.get('id');
+    this.router.navigate([`/alterar-dados-instituicao/${idVoluntario}`]);
   }
 
 }

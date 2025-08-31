@@ -89,4 +89,38 @@ export class ContaService {
       nome: conta.nome,
     };
   }
+
+  async updateInstituicao(id: number, body: any): Promise<Conta> {
+    const conta = await this.contaRepository.findOne({ where: { id_conta: id, tipo_conta: 'instituicao' } });
+    if (!conta) throw new BadRequestException('Instituição não encontrada');
+
+    if (body.senha) {
+      conta.senha = await bcrypt.hash(body.senha, 10);
+    }; 
+    if (body.telefone) {
+      conta.telefone = body.telefone;
+    }; 
+    if (body.endereco) {
+      conta.endereco = body.endereco;
+    };
+
+    return this.contaRepository.save(conta);
+  }
+
+  async updateVoluntario(id: number, body: any): Promise<Conta> {
+    const conta = await this.contaRepository.findOne({ where: { id_conta: id, tipo_conta: 'voluntario' } });
+    if (!conta) throw new BadRequestException('Voluntário não encontrado');
+
+    if (body.senha) {
+      conta.senha = await bcrypt.hash(body.senha, 10);
+    }; 
+    if (body.telefone) {
+      conta.telefone = body.telefone;
+    }; 
+    if (body.endereco) {
+      conta.endereco = body.endereco;
+    };
+
+    return this.contaRepository.save(conta);
+  }
 }

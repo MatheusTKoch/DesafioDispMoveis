@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { maskTelefone } from '../utils/mascara/maskTelefone';
+import { ActivatedRoute, Router } from '@angular/router';
 
 type TipoConta = 'voluntario' | 'instituicao';
 
@@ -19,7 +20,7 @@ type TipoConta = 'voluntario' | 'instituicao';
   ]
 })
 export class AlterarDadosInstituicaoPage {
-
+  id: number;
   tipo: TipoConta = 'voluntario';
   nome = '';
   email = '';
@@ -28,11 +29,14 @@ export class AlterarDadosInstituicaoPage {
   cpf = '';
   cnpj = '';
   senha = '';
+  confirmarSenha = '';
 
   successMessage = '';
   errorMessage = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+  }
 
   onTelefone(e: any) { this.telefone = maskTelefone(e.detail?.value || ''); }
 
@@ -40,13 +44,18 @@ export class AlterarDadosInstituicaoPage {
     this.successMessage = '';
     this.errorMessage = '';
 
-    const body: any = {
-        telefone: this.telefone,
-        endereco: this.endereco,
-        senha: this.senha
-      };
+    if (this.senha !== this.confirmarSenha) {
+      this.errorMessage = 'As senhas não coincidem!';
+      return;
+    }
 
-    this.http.post('http://localhost:3000/conta/cadastro/instituicao', body).subscribe({
+    const body: any = {
+      telefone: this.telefone,
+      endereco: this.endereco,
+      senha: this.senha
+    };
+
+    this.http.put(`http://localhost:3000/conta/instituicao/${this.id}`, body).subscribe({
       next: () => this.successMessage = 'Perfil salvo com sucesso!',
       error: (err) => this.errorMessage = err?.error?.message || 'Erro ao salvar perfil.'
     });

@@ -51,12 +51,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'alterar-dados-instituicao',
+    path: 'alterar-dados-instituicao/:id',
     component: AlterarDadosInstituicaoPage,
     canActivate: [AuthGuard]
   },
   {
-    path: 'alterar-dados-voluntario',
+    path: 'alterar-dados-voluntario/:id',
     component: AlterarDadosVoluntarioPage,
     canActivate: [AuthGuard]
   },

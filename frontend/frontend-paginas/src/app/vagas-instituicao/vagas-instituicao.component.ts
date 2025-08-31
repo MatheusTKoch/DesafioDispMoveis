@@ -39,8 +39,8 @@ export class VagasInstituicaoComponent implements OnInit {
   }
 
   async AlterarDadosInstituicao() {
-    await this.popoverController.dismiss();
-    this.router.navigate(['/alterar-dados-instituicao']);
+    const idInstituicao = this.route.snapshot.paramMap.get('id');
+    this.router.navigate([`/alterar-dados-instituicao/${idInstituicao}`]);
   }
 
   ngOnInit(): void {

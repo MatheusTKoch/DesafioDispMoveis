@@ -25,12 +25,24 @@
 
             <ion-item>
               <ion-label position="stacked">Nova senha</ion-label>
-              <ion-input [(ngModel)]="senha"></ion-input>
+              <ion-input
+                [(ngModel)]="senha"
+                type="password"
+                name="senha"
+              >
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="stacked">Confirmar a senha</ion-label>
-              <ion-input [(ngModel)]="senha"></ion-input>
+              <ion-input
+                [(ngModel)]="confirmarSenha"
+                type="password"
+                name="confirmarSenha"
+              >
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
             </ion-item>
 
             <ion-button expand="block" class="ion-margin-top" (click)="alterar()">Salvar</ion-button>
