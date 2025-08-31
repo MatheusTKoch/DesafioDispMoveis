@@ -70,9 +70,9 @@ export class CadastroVoluntarioPage {
 
     this.http.post('http://localhost:3000/conta/cadastro/voluntario', this.voluntario)
       .subscribe({
-        next: () => {
+        next: (res: any) => {
           this.successMessage = 'Cadastro realizado com sucesso!';
-          this.router.navigate(['/login-voluntario']);
+          this.router.navigate([`/vagas-voluntario/${res.id_conta}`]);
         },
         error: err => this.errorMessage = err.error?.message || 'Erro ao realizar login.'
       });

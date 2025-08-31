@@ -6,9 +6,6 @@ import { AuthGuard } from './auth-guard';
 import { CadastroVoluntarioPage } from './cadastro-voluntario/cadastro-voluntario.page';
 import { CadastroInstituicaoPage } from './cadastro-instituicao/cadastro-instituicao.page';
 import { SelecaoCadastroPage } from './selecao-cadastro/selecao-cadastro.page';
-import { LoginInstituicaoPage } from './login-instituicao/login-instituicao.page';
-import { LoginVoluntarioPage } from './login-voluntario/login-voluntario.page';
-import { HomePage } from './home/home.page';
 import { VagasInstituicaoComponent } from './vagas-instituicao/vagas-instituicao.component';
 import { CadastroVagaComponent } from './cadastro-vaga/cadastro-vaga.component';
 import { VagasVoluntarioComponent } from './vagas-voluntario/vagas-voluntario.component';
@@ -37,16 +34,6 @@ const routes: Routes = [
   {
     path: 'cadastro-instituicao',
     component: CadastroInstituicaoPage
-  },
-  {
-    path: 'login-instituicao',
-    component: LoginInstituicaoPage,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'login-voluntario',
-    component: LoginVoluntarioPage,
-    canActivate: [AuthGuard]
   },
   {
     path: 'vagas-instituicao/:id',

@@ -67,9 +67,9 @@ export class CadastroInstituicaoPage {
 
     this.http.post('http://localhost:3000/conta/cadastro/instituicao', this.instituicao)
       .subscribe({
-        next: async () => {
+        next: async (res: any) => {
           this.successMessage = 'Cadastro realizado com sucesso!';
-          this.router.navigate(['/login-instituicao']);
+          this.router.navigate([`/vagas-instituicao/${res.id_conta}`]);
         },
         error: err => this.errorMessage = err.error?.message || 'Erro ao realizar login.'
       });
