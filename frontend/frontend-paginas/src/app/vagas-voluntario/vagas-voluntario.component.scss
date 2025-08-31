@@ -1,0 +1,13 @@
+.footer-buttons {
+  display: flex;
+  justify-content: space-between; /* ou flex-start se quiser grudado à esquerda */
+  gap: 8px; /* espaçamento entre os botões */
+  padding: 0 16px; /* opcional, margens internas */
+}
+
+.square-btn {
+  border-radius: 0 !important; /* remove os cantos arredondados */
+  flex: 1; /* faz os botões ocuparem espaço igual */
+  --padding-start: 0;
+  --padding-end: 0;
+}

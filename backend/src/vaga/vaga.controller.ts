@@ -18,11 +18,19 @@ export class VagaController {
     return this.vagaService.listarVagasComInscricoes(idInstituicao);
   }
 
+  @Get('abertas')
+    async listarVagasAbertas() {
+  return this.vagaService.listarVagasAbertas();
+  }
+
  @Post('cria-vaga/:id')
-async create(
-  @Param('id', ParseIntPipe) idInstituicao: number,
-  @Body() createVagaDto: CreateVagaDto,
-): Promise<Vaga> {
-  return await this.vagaService.create(createVagaDto, idInstituicao);
-}
+  async create(
+    @Param('id', ParseIntPipe) idInstituicao: number,
+    @Body() createVagaDto: CreateVagaDto,
+  ): Promise<Vaga> {
+    return await this.vagaService.create(createVagaDto, idInstituicao);
+  }
+
+
+
 }

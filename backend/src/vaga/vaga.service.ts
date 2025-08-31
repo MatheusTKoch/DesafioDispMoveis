@@ -62,4 +62,10 @@ export class VagaService {
     return await this.vagaRepository.save(vaga);
   }
 
+   async listarVagasAbertas() {
+    return this.vagaRepository.find({
+      where: { statusVaga: StatusVaga.ABERTA },
+    });
+  }
+
 }

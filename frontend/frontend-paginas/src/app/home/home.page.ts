@@ -40,7 +40,7 @@ export class HomePage {
         if (res.tipo_conta === 'instituicao') {
           this.router.navigate([`/vagas-instituicao/${res.id_conta}`]);
         } else {
-          this.router.navigate(['/login-voluntario']);
+          this.router.navigate([`/vagas-voluntario/${res.id_conta}`])
         }
       },
       error: err => this.errorMessage = err.error?.message || 'Erro ao realizar login.'

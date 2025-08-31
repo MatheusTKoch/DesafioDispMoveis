@@ -8,10 +8,12 @@ import { CadastroInstituicaoPage } from './cadastro-instituicao/cadastro-institu
 import { SelecaoCadastroPage } from './selecao-cadastro/selecao-cadastro.page';
 import { LoginInstituicaoPage } from './login-instituicao/login-instituicao.page';
 import { LoginVoluntarioPage } from './login-voluntario/login-voluntario.page';
+import { HomePage } from './home/home.page';
 import { VagasInstituicaoComponent } from './vagas-instituicao/vagas-instituicao.component';
 import { CadastroVagaComponent } from './cadastro-vaga/cadastro-vaga.component';
-import { AlterarDadosVoluntarioPage } from './alterar-dados-voluntario/alterar-dados-voluntario.page';
+import { VagasVoluntarioComponent } from './vagas-voluntario/vagas-voluntario.component';
 import { AlterarDadosInstituicaoPage } from './alterar-dados-instituicao/alterar-dados-instituicao.page';
+import { AlterarDadosVoluntarioPage } from './alterar-dados-voluntario/alterar-dados-voluntario.page';
 
 
 const routes: Routes = [
@@ -57,13 +59,18 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'alterar-dados-voluntario',
-    component: AlterarDadosVoluntarioPage,
+    path: 'vagas-voluntario/:voluntarioId',
+    component: VagasVoluntarioComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'alterar-dados-instituicao',
     component: AlterarDadosInstituicaoPage,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'alterar-dados-voluntario',
+    component: AlterarDadosVoluntarioPage,
     canActivate: [AuthGuard]
   },
   {
