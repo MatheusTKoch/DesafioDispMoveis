@@ -1,5 +1,5 @@
 // conta.controller.ts
-import { Controller, Post, Body, Put, Param } from '@nestjs/common';
+import { Controller, Post, Body, Put, Param, Get } from '@nestjs/common';
 import { ContaService } from './conta.service';
 import { CreateContaDto } from './dto/create-conta.dto';
 import { CreateInstituicaoDto } from './dto/create-instituicao.dto';
@@ -32,5 +32,10 @@ export class ContaController {
  @Put('alterar/voluntario/:id')
  async updateVoluntario(@Param('id') id: number, @Body() body: any) {
    return this.contaService.updateVoluntario(id, body);
+ }
+
+ @Get(':id')
+ async findOne(@Param('id') id: number) {
+   return this.contaService.findOne(id);
  }
 }
