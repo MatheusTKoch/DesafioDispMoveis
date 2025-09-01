@@ -60,8 +60,14 @@ export class VagasVoluntarioComponent implements OnInit {
     await this.popoverController.dismiss();
     const urlSegments = this.router.url.split('/');
     const idVoluntario = urlSegments[urlSegments.length - 1];
-    this.router.navigate([`/alterar-dados-instituicao/${idVoluntario}`]);
+    this.router.navigate([`alterar-dados-voluntario/${idVoluntario}`]);
 
+  }
+
+  async AcessarPerfil() {
+    const urlSegments = this.router.url.split('/');
+    const idVoluntario = urlSegments[urlSegments.length - 1];
+    this.router.navigate([`perfil/${idVoluntario}`]);
   }
 
 }

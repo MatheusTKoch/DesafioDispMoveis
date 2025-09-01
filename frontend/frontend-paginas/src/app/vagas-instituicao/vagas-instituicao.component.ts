@@ -42,7 +42,13 @@ export class VagasInstituicaoComponent implements OnInit {
     await this.popoverController.dismiss();
     const urlSegments = this.router.url.split('/');
     const idInstituicao = urlSegments[urlSegments.length - 1];
-    this.router.navigate([`/alterar-dados-instituicao/${idInstituicao}`]);
+    this.router.navigate([`alterar-dados-instituicao/${idInstituicao}`]);
+  }
+
+  async AcessarPerfil() {
+    const urlSegments = this.router.url.split('/');
+    const idVoluntario = urlSegments[urlSegments.length - 1];
+    this.router.navigate([`perfil/${idVoluntario}`]);
   }
 
   ngOnInit(): void {
