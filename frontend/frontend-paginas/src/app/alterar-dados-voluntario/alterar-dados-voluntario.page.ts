@@ -51,7 +51,7 @@ export class AlterarDadosVoluntarioPage  {
       senha: this.senha
     };
 
-    this.http.put(`http://localhost:3000/conta/instituicao/${this.id}`, body).subscribe({
+    this.http.put(`http://localhost:3000/conta/alterar/voluntario/${this.id}`, body).subscribe({
       next: () => this.successMessage = 'Perfil salvo com sucesso!',
       error: (err) => this.errorMessage = err?.error?.message || 'Erro ao salvar perfil.'
     });

@@ -16,12 +16,18 @@
           <form>
             <ion-item>
             <ion-label position="stacked">Telefone</ion-label>
-            <ion-input [value]="telefone" (ionInput)="onTelefone($event)" maxlength="15"></ion-input>
+            <ion-input
+              [value]="telefone"
+              (ionInput)="onTelefone($event)"
+              maxlength="15"
+              name="telefone"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="stacked">Endereço</ion-label>
-              <ion-input [(ngModel)]="endereco"></ion-input>
+              <ion-input
+                [(ngModel)]="endereco"
+                name="endereco"></ion-input>
             </ion-item>
 
             <ion-item>

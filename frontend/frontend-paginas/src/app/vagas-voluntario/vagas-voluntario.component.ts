@@ -58,8 +58,10 @@ export class VagasVoluntarioComponent implements OnInit {
 
   async AlterarDadosVoluntario() {
     await this.popoverController.dismiss();
-    const idVoluntario = this.route.snapshot.paramMap.get('id');
+    const urlSegments = this.router.url.split('/');
+    const idVoluntario = urlSegments[urlSegments.length - 1];
     this.router.navigate([`/alterar-dados-instituicao/${idVoluntario}`]);
+
   }
 
 }

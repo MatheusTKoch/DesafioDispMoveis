@@ -39,7 +39,9 @@ export class VagasInstituicaoComponent implements OnInit {
   }
 
   async AlterarDadosInstituicao() {
-    const idInstituicao = this.route.snapshot.paramMap.get('id');
+    await this.popoverController.dismiss();
+    const urlSegments = this.router.url.split('/');
+    const idInstituicao = urlSegments[urlSegments.length - 1];
     this.router.navigate([`/alterar-dados-instituicao/${idInstituicao}`]);
   }
 
