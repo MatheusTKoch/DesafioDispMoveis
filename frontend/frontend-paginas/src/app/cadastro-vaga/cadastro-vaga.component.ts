@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-vaga',
@@ -17,6 +18,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   ],
 })
 export class CadastroVagaComponent {
+  instituicaoId: number;
+
   form = {
     titulo: '',
     descricao: '',
@@ -27,12 +30,13 @@ export class CadastroVagaComponent {
     status_vaga: 'aberta',
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {
+    this.instituicaoId = Number(this.route.snapshot.paramMap.get('id'));
+  }
 
   submit() {
-    const instituicaoId = 13; // fixo para teste
     this.http
-      .post(`http://localhost:3000/vagas/cria-vaga/${instituicaoId}`, this.form)
+      .post(`http://localhost:3000/vagas/cria-vaga/${this.instituicaoId}`, this.form)
       .subscribe({
         next: (res) => {
           alert('Vaga cadastrada com sucesso!');

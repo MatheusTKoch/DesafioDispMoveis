@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-perfil',
@@ -18,16 +18,38 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PerfilPage implements OnInit {
   conta: any;
-  id: number | undefined;
+  id: number;
+  vagasPostadas: any[] = [];
+  vagasCandidatadas: any[] = [];
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+
+  ) {
+    this.id = 0;
+  }
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     if (this.id) {
       this.http.get(`http://localhost:3000/conta/${this.id}`).subscribe({
-        next: (res) => this.conta = res,
-        error: (err) => console.error('Erro ao buscar conta', err)
+        next: (res: any) => {
+          this.conta = res;
+          if (this.conta?.tipo_conta === 'instituicao') {
+            this.http.get(`http://localhost:3000/vagas/instituicao/${this.id}`).subscribe({
+              next: (vagas: any) => this.vagasPostadas = vagas
+            });
+          }
+          else if (this.conta?.tipo_conta === 'voluntario') {
+            this.http.get(`http://localhost:3000/vagas/candidatadas/${this.id}`).subscribe({
+              next: (vagas: any) => this.vagasCandidatadas = vagas
+            });
+          }
+        },
+        error: (err) => {
+          this.conta = null;
+        }
       });
     }
   }

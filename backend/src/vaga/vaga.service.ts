@@ -68,4 +68,12 @@ export class VagaService {
     });
   }
 
+  async listarVagasCandidatadas(idVoluntario: number): Promise<Vaga[]> {
+    const inscricoes = await this.inscricaoRepository.find({
+      where: { contaId: idVoluntario },
+      relations: ['vaga'],
+    });
+
+    return inscricoes.map((inscricao) => inscricao.vaga);
+  }
 }

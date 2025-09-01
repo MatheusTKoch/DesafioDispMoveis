@@ -31,6 +31,10 @@ export class VagaController {
     return await this.vagaService.create(createVagaDto, idInstituicao);
   }
 
+  @Get('candidatadas/:id')
+  async listarVagasCandidatadas(@Param('id', ParseIntPipe) idVoluntario: number) {
+    return this.vagaService.listarVagasCandidatadas(idVoluntario);
+  }
 
 
 }
