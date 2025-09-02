@@ -52,14 +52,15 @@ export class VagasInstituicaoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const idInstituicao = Number(this.route.snapshot.paramMap.get('id'));
-
-    if (idInstituicao) {
-      this.vagaService
-        .listarVagasComInscricoes(idInstituicao)
-        .subscribe((dados) => {
-          this.vagas = dados;
-        });
-    }
+    this.route.paramMap.subscribe(params => {
+      const idInstituicao = Number(params.get('id'));
+      if (idInstituicao) {
+        this.vagaService
+          .listarVagasComInscricoes(idInstituicao)
+          .subscribe((dados) => {
+            this.vagas = dados;
+          });
+      }
+    });
   }
 }
