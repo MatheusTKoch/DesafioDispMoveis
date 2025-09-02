@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
      <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="vagas-instituicao"></ion-back-button>
     </ion-buttons>
     <ion-title>Cadastro de Vaga</ion-title>
   </ion-toolbar>
@@ -50,7 +50,13 @@
           </ion-select>
         </ion-item>
 
-        <ion-button expand="full" type="submit" class="ion-margin-top">Cadastrar Vaga</ion-button>
+        <ion-button
+          expand="block"
+          type="submit"
+          [disabled]="isLoading">
+          <ion-spinner *ngIf="isLoading" name="dots"></ion-spinner>
+          <span *ngIf="!isLoading">Cadastrar Vaga</span>
+        </ion-button>
       </form>
     </ion-card>
   </ion-grid>

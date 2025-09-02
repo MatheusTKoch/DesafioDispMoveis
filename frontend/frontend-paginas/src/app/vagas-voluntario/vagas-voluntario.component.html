@@ -42,8 +42,9 @@
             expand="block"
             color="primary"
             (click)="inscrever(vaga)"
-            [disabled]="vaga.statusVaga !== 'aberta' || vaga.qtdVagas === 0">
-            Inscrever-se
+            [disabled]="isLoading === vaga.id || vaga.statusVaga !== 'aberta' || vaga.qtdVagas === 0">
+            <ion-spinner *ngIf="isLoading === vaga.id" name="dots"></ion-spinner>
+            <span *ngIf="isLoading !== vaga.id">Inscrever-se</span>
           </ion-button>
         </div>
       </ion-card-content>

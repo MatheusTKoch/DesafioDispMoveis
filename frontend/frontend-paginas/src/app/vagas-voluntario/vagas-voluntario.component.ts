@@ -14,6 +14,7 @@ import { VagaService, Vaga } from '../vaga.service'; // ajuste o caminho conform
 export class VagasVoluntarioComponent implements OnInit {
   vagas: Vaga[] = [];
   id: any;
+  isLoading: number | null = null; // guarda o id da vaga sendo processada
 
   constructor(
     private vagaService: VagaService,
@@ -36,18 +37,23 @@ export class VagasVoluntarioComponent implements OnInit {
 
   inscrever(vaga: Vaga) {
     const voluntarioId = Number(this.route.snapshot.paramMap.get('voluntarioId'));
-
     if (!voluntarioId) {
       this.showToast('Erro: ID do voluntário não encontrado na URL.', 'danger');
       return;
     }
 
+    this.isLoading = vaga.id; // seta o id da vaga em carregamento
+
     this.vagaService.inscrever(voluntarioId, vaga.id).subscribe({
       next: () => {
         this.showToast('Inscrição realizada com sucesso!');
         this.listarVagasAbertas(); // atualiza lista de vagas
+        this.isLoading = null;
       },
-      error: (err) => this.showToast('Erro ao se inscrever: ' + err.message, 'danger')
+      error: (err) => {
+        this.showToast('Erro ao se inscrever: ' + err.message, 'danger');
+        this.isLoading = null;
+      }
     });
   }
 

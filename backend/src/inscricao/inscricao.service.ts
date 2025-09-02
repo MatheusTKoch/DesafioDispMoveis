@@ -4,6 +4,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
 import { Inscricao, StatusInscricao } from './inscricao.entity';
 import { Vaga, StatusVaga } from '../vaga/vaga.entity';
+import sendMailCandidate from '../utils/mail/template/mailVoluntarioVaga';
+import sendMailInstitution from '../utils/mail/template/maiInstituicaoVaga';
+import { Conta } from '../conta/conta.entity';
 
 @Injectable()
 export class InscricaoService {
@@ -12,6 +15,8 @@ export class InscricaoService {
     private inscricaoRepository: Repository<Inscricao>,
     @InjectRepository(Vaga)
     private vagaRepository: Repository<Vaga>,
+    @InjectRepository(Conta)
+    private contaRepository: Repository<Conta>,
     private dataSource: DataSource,
   ) {}
 
@@ -38,6 +43,28 @@ export class InscricaoService {
         vaga.statusVaga = StatusVaga.ENCERRADA;
       }
       await manager.save(Vaga, vaga);
+
+      // Buscar dados do voluntário e instituição
+      const voluntario = await this.contaRepository.findOne({ where: { id_conta: idVoluntario } });
+      const instituicao = await this.contaRepository.findOne({ where: { id_conta: vaga.instituicaoId } });
+
+      // Enviar email para voluntário
+      if (voluntario && instituicao) {
+        await sendMailCandidate(
+          voluntario.email,
+          voluntario.nome,
+          vaga.titulo,
+          instituicao.nome
+        );
+
+        // Enviar email para instituição
+        await sendMailInstitution(
+          instituicao.email,
+          voluntario.nome,
+          vaga.titulo,
+          instituicao.nome
+        );
+      }
 
       return inscricao;
     });

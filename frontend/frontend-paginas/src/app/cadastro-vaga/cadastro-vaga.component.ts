@@ -19,6 +19,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CadastroVagaComponent {
   instituicaoId: number;
+  isLoading = false; // Adicionado
 
   form = {
     titulo: '',
@@ -50,13 +51,17 @@ export class CadastroVagaComponent {
   }
 
   submit() {
+    this.isLoading = true;
     this.http
       .post(`http://localhost:3000/vagas/cria-vaga/${this.instituicaoId}`, this.form)
       .subscribe({
         next: (res) => {
+          this.isLoading = false;
           this.showToast('Vaga cadastrada com sucesso!');
+          this.router.navigate([`/vagas-instituicao/${this.instituicaoId}`]);
         },
         error: (err) => {
+          this.isLoading = false;
           console.error(err);
           this.showToast('Erro ao cadastrar vaga', 'danger');
         },
