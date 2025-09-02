@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule, PopoverController } from '@ionic/angular';
+import { IonicModule, PopoverController, ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { VagaService, Vaga } from '../vaga.service'; // ajuste o caminho conforme seu service
 
@@ -19,7 +19,8 @@ export class VagasVoluntarioComponent implements OnInit {
     private vagaService: VagaService,
     private route: ActivatedRoute,
     private popoverController: PopoverController,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) {}
 
   ngOnInit(): void {
@@ -37,16 +38,16 @@ export class VagasVoluntarioComponent implements OnInit {
     const voluntarioId = Number(this.route.snapshot.paramMap.get('voluntarioId'));
 
     if (!voluntarioId) {
-      alert('Erro: ID do voluntário não encontrado na URL.');
+      this.showToast('Erro: ID do voluntário não encontrado na URL.', 'danger');
       return;
     }
 
     this.vagaService.inscrever(voluntarioId, vaga.id).subscribe({
       next: () => {
-        alert('Inscrição realizada com sucesso!');
+        this.showToast('Inscrição realizada com sucesso!');
         this.listarVagasAbertas(); // atualiza lista de vagas
       },
-      error: (err) => alert('Erro ao se inscrever: ' + err.message)
+      error: (err) => this.showToast('Erro ao se inscrever: ' + err.message, 'danger')
     });
   }
 
@@ -68,6 +69,16 @@ export class VagasVoluntarioComponent implements OnInit {
     const urlSegments = this.router.url.split('/');
     const idVoluntario = urlSegments[urlSegments.length - 1];
     this.router.navigate([`perfil/${idVoluntario}`]);
+  }
+
+  async showToast(message: string, color: string = 'success') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2500,
+      color,
+      position: 'top'
+    });
+    await toast.present();
   }
 
 }
