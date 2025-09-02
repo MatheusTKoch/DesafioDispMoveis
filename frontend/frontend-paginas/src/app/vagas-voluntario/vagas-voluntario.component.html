@@ -24,35 +24,36 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-
-  <div *ngFor="let vaga of vagas" class="vaga-card">
-    <h2>{{ vaga.titulo }}</h2>
-    <p>{{ vaga.descricao }}</p>
-    <p><strong>Habilidades:</strong> {{ vaga.habilidades }}</p>
-    <p><strong>Localização:</strong> {{ vaga.localizacao }}</p>
-    <p><strong>Qtd Vagas:</strong> {{ vaga.qtdVagas }}</p>
-    <p><strong>Data de Entrega:</strong> {{ vaga.dataEntrega | date:'dd/MM/yyyy' }}</p>
-    <p><strong>Status:</strong> {{ vaga.statusVaga }}</p>
-
-    <div class="inscricao-voluntario">
-      <ion-button
-        expand="block"
-        color="primary"
-        (click)="inscrever(vaga)"
-        [disabled]="vaga.statusVaga !== 'aberta' || vaga.qtdVagas === 0">
-        Inscrever-se
-      </ion-button>
-    </div>
-
+<ion-content class="ion-padding" style="height: 100%;">
+  <div style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
+    <ion-card *ngFor="let vaga of vagas" style="margin-bottom: 32px; width: 100%; max-width: 400px;">
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">{{ vaga.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content style="text-align: center;">
+        <p>{{ vaga.descricao }}</p>
+        <p><strong>Habilidades:</strong> {{ vaga.habilidades }}</p>
+        <p><strong>Localização:</strong> {{ vaga.localizacao }}</p>
+        <p><strong>Qtd Vagas:</strong> {{ vaga.qtdVagas }}</p>
+        <p><strong>Data de Entrega:</strong> {{ vaga.dataEntrega | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Status:</strong> {{ vaga.statusVaga }}</p>
+        <div class="inscricao-voluntario" style="margin-top: 16px;">
+          <ion-button
+            expand="block"
+            color="primary"
+            (click)="inscrever(vaga)"
+            [disabled]="vaga.statusVaga !== 'aberta' || vaga.qtdVagas === 0">
+            Inscrever-se
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
   </div>
-
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <div class="footer-buttons">
-      <ion-button expand="block" routerLink="/vagas-voluntario">Vagas</ion-button>
       <ion-button expand="block" (click)="AcessarPerfil()">Perfil</ion-button>
     </div>
   </ion-toolbar>

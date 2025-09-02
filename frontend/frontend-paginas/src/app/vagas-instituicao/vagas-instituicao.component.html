@@ -24,38 +24,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" style="height: 100%;">
+  <div style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
+    <ion-card *ngFor="let vaga of vagas" style="margin-bottom: 32px; max-width: 400px; width: 100%; margin-left: auto; margin-right: auto;">
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">{{ vaga.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content style="text-align: center;">
+        <p>{{ vaga.descricao }}</p>
+        <p><strong>Habilidades:</strong> {{ vaga.habilidades }}</p>
+        <p><strong>Localização:</strong> {{ vaga.localizacao }}</p>
+        <p><strong>Qtd Vagas:</strong> {{ vaga.qtdVagas }}</p>
+        <p><strong>Data de Entrega:</strong> {{ vaga.dataEntrega | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Status:</strong> {{ vaga.statusVaga }}</p>
 
-  <div *ngFor="let vaga of vagas" class="vaga-card">
-    <h2>{{ vaga.titulo }}</h2>
-    <p>{{ vaga.descricao }}</p>
-    <p><strong>Habilidades:</strong> {{ vaga.habilidades }}</p>
-    <p><strong>Localização:</strong> {{ vaga.localizacao }}</p>
-    <p><strong>Qtd Vagas:</strong> {{ vaga.qtdVagas }}</p>
-    <p><strong>Data de Entrega:</strong> {{ vaga.dataEntrega | date }}</p>
-    <p><strong>Status:</strong> {{ vaga.statusVaga }}</p>
-
-    <div class="inscricoes">
-      <h3>Inscrições:</h3>
-      <div *ngIf="vaga.voluntarios.length === 0">
-        Nenhuma candidatura
-      </div>
-      <div *ngFor="let vol of vaga.voluntarios" class="voluntario-card">
-        <p><strong>Nome:</strong> {{ vol.nome }}</p>
-        <p><strong>Email:</strong> {{ vol.email }}</p>
-        <p><strong>Telefone:</strong> {{ vol.telefone }}</p>
-        <p><strong>Status:</strong> {{ vol.status }}</p>
-      </div>
-    </div>
+        <div class="inscricoes" style="margin-top: 16px;">
+          <h3 style="text-align: center;">Inscrições:</h3>
+          <div *ngIf="vaga.voluntarios.length === 0" style="text-align: center;">
+            Nenhuma candidatura
+          </div>
+          <ion-card *ngFor="let vol of vaga.voluntarios" style="margin-top: 8px;">
+            <p><strong>Nome:</strong> {{ vol.nome }}</p>
+            <p><strong>Email:</strong> {{ vol.email }}</p>
+            <p><strong>Telefone:</strong> {{ vol.telefone }}</p>
+            <p><strong>Status:</strong> {{ vol.status }}</p>
+          </ion-card>
+        </div>
+      </ion-card-content>
+    </ion-card>
   </div>
-
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <div class="footer-buttons">
       <ion-button expand="block" (click)="goToCadastro()">Cadastrar Vaga</ion-button>
-      <ion-button expand="block">Vagas</ion-button>
       <ion-button expand="block" (click)="AcessarPerfil()">Perfil</ion-button>
     </div>
   </ion-toolbar>

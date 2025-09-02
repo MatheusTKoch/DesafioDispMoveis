@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-vaga',
@@ -30,8 +30,23 @@ export class CadastroVagaComponent {
     status_vaga: 'aberta',
   };
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastController: ToastController
+  ) {
     this.instituicaoId = Number(this.route.snapshot.paramMap.get('id'));
+  }
+
+  async showToast(message: string, color: string = 'success') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2500,
+      color,
+      position: 'top'
+    });
+    await toast.present();
   }
 
   submit() {
@@ -39,12 +54,11 @@ export class CadastroVagaComponent {
       .post(`http://localhost:3000/vagas/cria-vaga/${this.instituicaoId}`, this.form)
       .subscribe({
         next: (res) => {
-          alert('Vaga cadastrada com sucesso!');
-          console.log(res);
+          this.showToast('Vaga cadastrada com sucesso!');
         },
         error: (err) => {
           console.error(err);
-          alert('Erro ao cadastrar vaga');
+          this.showToast('Erro ao cadastrar vaga', 'danger');
         },
       });
   }
